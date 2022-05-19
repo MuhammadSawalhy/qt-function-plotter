@@ -2,20 +2,19 @@
 #include <muParser.h>
 #include "./plot_settings.hpp"
 
-PlotSettings* plotSettings;
+PlotSettings plotSettings;
 
-std::string updatePlotSettings(PlotSettings *newSettings)
+std::string updatePlotSettings(PlotSettings newSettings)
 {
     std::string errMsg;
 
-    if (newSettings->minX >= newSettings->maxX)
+    if (newSettings.minX >= newSettings.maxX)
         return "max x should be greater than min x";
 
-    errMsg = validateFunction(newSettings->function.c_str());
+    errMsg = validateFunction(newSettings.function.c_str());
     if (!errMsg.empty())
         return errMsg;
 
-    delete plotSettings; // TODO: learn more about delete statement
     plotSettings = newSettings;
     return "";
 }

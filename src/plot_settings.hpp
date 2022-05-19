@@ -10,14 +10,14 @@ struct PlotSettings
     std::string function;
 };
 
-extern PlotSettings* plotSettings;
+extern PlotSettings plotSettings;
 
 /**
  * @brief update the plotting settings which will be used to plot with QCustomPlot
  * @param settings the new settings
  * @return error message if the new settings are invalid
  */
-std::string updatePlotSettings(PlotSettings *settings);
+std::string updatePlotSettings(PlotSettings settings);
 
 std::string validateFunction(const char *function);
 

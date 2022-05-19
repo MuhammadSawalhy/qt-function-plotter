@@ -5,7 +5,7 @@
 #include "plot_settings.hpp"
 
 void calculate(QVector<double> &x, QVector<double> &y) {
-    calculate(plotSettings->function.c_str(), x, y);
+    calculate(plotSettings.function.c_str(), x, y);
 }
 
 void calculate(const char *function, QVector<double> &x, QVector<double> &y) {
@@ -16,8 +16,8 @@ void calculate(const char *function, QVector<double> &x, QVector<double> &y) {
         p.SetExpr(function);
         for (int i=0; i<STEPS; i++)
         {
-            x_value = plotSettings->minX +
-                   (plotSettings->maxX - plotSettings->minX) * i / STEPS;
+            x_value = plotSettings.minX +
+                   (plotSettings.maxX - plotSettings.minX) * i / STEPS;
             x[i] = x_value;
             y[i] = p.Eval();
         }

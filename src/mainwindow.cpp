@@ -51,10 +51,10 @@ void MainWindow::plot(const char *function)
 
 void MainWindow::on_plotBtn_clicked()
 {
-    PlotSettings *newSettings = new PlotSettings();
-    newSettings->minX = this->ui->minX->value();
-    newSettings->maxX = this->ui->maxX->value();
-    newSettings->function = this->ui->functionInput->text().toStdString();
+    PlotSettings newSettings;
+    newSettings.minX = this->ui->minX->value();
+    newSettings.maxX = this->ui->maxX->value();
+    newSettings.function = this->ui->functionInput->text().toStdString();
 
     std::string errMsg = updatePlotSettings(newSettings);
     std::cout << errMsg << std::endl;

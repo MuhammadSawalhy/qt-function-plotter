@@ -4,9 +4,62 @@
 
 using namespace testing;
 
-TEST(plot_settings_tests, validateFunctionTests)
+TEST(ValidateFuntion, ShouldNotAcceptEmptyExpressions)
 {
-    EXPECT_EQ(2, 2);
-    ASSERT_THAT(0, Eq(0));
+    PlotSettings newSettings;
+    newSettings.minX = -1;
+    newSettings.maxX = 2;
+    newSettings.function = "";
+    std::string errMsg = updatePlotSettings(newSettings);
+    ASSERT_TRUE(!errMsg.empty());
 }
 
+TEST(ValidateFuntion, ShouldNotAcceptInvalidExpressions)
+{
+    PlotSettings newSettings;
+    newSettings.minX = -1;
+    newSettings.maxX = 2;
+    newSettings.function = "1 -";
+    std::string errMsg = updatePlotSettings(newSettings);
+    ASSERT_TRUE(!errMsg.empty());
+}
+
+TEST(ValidateFuntion, ShouldAcceptValidExpressions)
+{
+    PlotSettings newSettings;
+    newSettings.minX = -1;
+    newSettings.maxX = 2;
+    newSettings.function = "x + 1 / 3 ^ x - 12.5";
+    std::string errMsg = updatePlotSettings(newSettings);
+    ASSERT_TRUE(errMsg.empty());
+}
+
+TEST(UpdatePlotSettings, ShouldUpdateWhenMaxIsGreaterThanMin)
+{
+    PlotSettings newSettings;
+    newSettings.minX = -1;
+    newSettings.maxX = 1;
+    newSettings.function = "x";
+    std::string errMsg = updatePlotSettings(newSettings);
+    ASSERT_TRUE(errMsg.empty());
+}
+
+TEST(UpdatePlotSettings, ShouldNotUpdateWhenMaxEqualsMin)
+{
+    PlotSettings newSettings;
+    newSettings.minX = -1;
+    newSettings.maxX = -1;
+    newSettings.function = "x";
+    std::string errMsg = updatePlotSettings(newSettings);
+    ASSERT_TRUE(!errMsg.empty());
+}
+
+TEST(UpdatePlotSettings, ShouldNotUpdateWhenMaxIsLessThanMin)
+{
+    PlotSettings newSettings;
+    newSettings.minX = -1;
+    newSettings.maxX = -2;
+    newSettings.function = "x";
+    std::string errMsg = updatePlotSettings(newSettings);
+    ASSERT_TRUE(!errMsg.empty());
+}
