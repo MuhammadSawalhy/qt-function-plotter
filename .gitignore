@@ -1,0 +1,4 @@
+build/
+build-src-Desktop-Debug/
+
+CMakeLists.txt.user
