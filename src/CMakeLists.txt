@@ -16,6 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets PrintSupport)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets PrintSupport)
+find_package(muparser CONFIG REQUIRED)
 
 set(PROJECT_SOURCES
     main.cpp
@@ -48,6 +49,7 @@ endif()
 target_link_libraries(
   function-plotter PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                            Qt${QT_VERSION_MAJOR}::PrintSupport)
+target_link_libraries(function-plotter PRIVATE muparser::muparser)
 
 set_target_properties(
   function-plotter

@@ -1,10 +1,11 @@
 #include <iostream>
 #include "mainwindow.h"
 #include "QString"
-#include "./ui_mainwindow.h"
-#include "./plot_settings.h"
+#include "ui_mainwindow.h"
+#include "plot_settings.h"
+#include "calculate.h"
 
-#define STEPS 1000
+bool isFirstPlot = true;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,14 +29,7 @@ void MainWindow::plot(const char *function)
 {
   QCustomPlot *customPlot = this->ui->customPlotCanvas;
   QVector<double> x(STEPS), y(STEPS);
-
-  for (int i=0; i<STEPS; i++)
-  {
-    x[i] = plotSettings->minX +
-           (plotSettings->maxX - plotSettings->minX) * i / STEPS;
-    y[i] = x[i]*x[i];
-  }
-
+  calculate(function, x, y);
   this->setWindowTitle(function);
   customPlot->addGraph();
   customPlot->graph(0)->setName(function);
@@ -44,6 +38,7 @@ void MainWindow::plot(const char *function)
   customPlot->xAxis->setLabel("x");
   customPlot->yAxis->setLabel("y");
   customPlot->replot();
+  customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
 
 void MainWindow::on_plotBtn_clicked()
@@ -55,5 +50,11 @@ void MainWindow::on_plotBtn_clicked()
 
     if (updatePlotSettings(newSettings)) {
         this->plot();
+        if (isFirstPlot) {
+            QMessageBox msg;
+            msg.setText("You mouse to move and zoom in/out 🖱");
+            msg.exec();
+        }
+        isFirstPlot = false;
     }
 }
