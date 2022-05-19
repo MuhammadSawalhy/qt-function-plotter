@@ -1,4 +1,5 @@
 #include <QVector>
+#include <QMessageBox>
 #include "calculate.h"
 #include "plot_settings.h"
 #include "muParser.h"
@@ -14,7 +15,7 @@ void calculate(const char *function, QVector<double> &x, QVector<double> &y) {
         p.DefineVar("x", &x_value);
         p.SetExpr(function);
         for (int i=0; i<STEPS; i++)
-        {
+            {
 
             x_value = plotSettings->minX +
                    (plotSettings->maxX - plotSettings->minX) * i / STEPS;
@@ -24,6 +25,9 @@ void calculate(const char *function, QVector<double> &x, QVector<double> &y) {
     }
     catch (mu::Parser::exception_type &e)
     {
-        std::cout << e.GetMsg() << std::endl;
+        QMessageBox msg;
+        msg.setText("Error while computing the curve points");
+        msg.setDetailedText(e.GetMsg().c_str());
+        msg.exec();
     }
 }

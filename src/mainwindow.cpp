@@ -31,10 +31,13 @@ void MainWindow::plot(const char *function)
   QVector<double> x(STEPS), y(STEPS);
   calculate(function, x, y);
   this->setWindowTitle(function);
+  this->ui->statusBar->showMessage(function);
   customPlot->addGraph();
   customPlot->graph(0)->setName(function);
   customPlot->graph(0)->setData(x, y);
   customPlot->graph(0)->rescaleAxes();
+  customPlot->xAxis->setRange(-10, 10);
+  customPlot->yAxis->setRange(-10, 10);
   customPlot->xAxis->setLabel("x");
   customPlot->yAxis->setLabel("y");
   customPlot->replot();
@@ -52,7 +55,7 @@ void MainWindow::on_plotBtn_clicked()
         this->plot();
         if (isFirstPlot) {
             QMessageBox msg;
-            msg.setText("You mouse to move and zoom in/out 🖱");
+            msg.setText("Use your mouse to move and zoom in/out 🖱");
             msg.exec();
         }
         isFirstPlot = false;
