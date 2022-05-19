@@ -16,12 +16,12 @@ find_package(muparser CONFIG REQUIRED)
 set(PROJECT_SOURCES
     main.cpp
     mainwindow.cpp
-    mainwindow.h
+    mainwindow.hpp
     mainwindow.ui
     plot_settings.cpp
-    plot_settings.h
+    plot_settings.hpp
     calculate.cpp
-    calculate.h)
+    calculate.hpp)
 
 add_subdirectory(qcustomplot/)
 

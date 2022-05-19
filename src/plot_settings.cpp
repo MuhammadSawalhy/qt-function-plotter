@@ -1,6 +1,6 @@
 #include <iostream>
 #include <muParser.h>
-#include "./plot_settings.h"
+#include "./plot_settings.hpp"
 
 PlotSettings* plotSettings;
 

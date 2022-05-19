@@ -1,9 +1,9 @@
 #include <iostream>
-#include "mainwindow.h"
+#include "mainwindow.hpp"
 #include "QString"
 #include "ui_mainwindow.h"
-#include "plot_settings.h"
-#include "calculate.h"
+#include "plot_settings.hpp"
+#include "calculate.hpp"
 
 bool isFirstPlot = true;
 

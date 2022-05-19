@@ -1,8 +1,8 @@
 #include <QVector>
 #include <QMessageBox>
 #include <muParser.h>
-#include "calculate.h"
-#include "plot_settings.h"
+#include "calculate.hpp"
+#include "plot_settings.hpp"
 
 void calculate(QVector<double> &x, QVector<double> &y) {
     calculate(plotSettings->function.c_str(), x, y);

@@ -109,7 +109,7 @@
   <customwidget>
    <class>QCustomPlot</class>
    <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
+   <header>qcustomplot.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
