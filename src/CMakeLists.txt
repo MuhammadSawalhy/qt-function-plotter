@@ -1,10 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(
-  function-plotter
-  VERSION 0.1
-  LANGUAGES CXX)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -50,15 +45,6 @@ target_link_libraries(
   function-plotter PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                            Qt${QT_VERSION_MAJOR}::PrintSupport)
 target_link_libraries(function-plotter PRIVATE muparser::muparser)
-
-set_target_properties(
-  function-plotter
-  PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-             MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-             MACOSX_BUNDLE_SHORT_VERSION_STRING
-             ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-             MACOSX_BUNDLE TRUE
-             WIN32_EXECUTABLE TRUE)
 
 if(QT_VERSION_MAJOR EQUAL 6)
   qt_finalize_executable(function-plotter)
