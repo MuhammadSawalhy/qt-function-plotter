@@ -15,7 +15,6 @@ make -C build/
 ```
 
 ## Tests
-e
 
 I have used [`gtest`](https://github.com/google/googletest) as the testing framework with tests under the directory `tests/`. You can use Qt Creator IDE to easily run the tests and you should see these pleasing greed circles ✅:
 
