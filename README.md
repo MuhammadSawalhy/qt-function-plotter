@@ -15,12 +15,15 @@ make -C build/
 ```
 
 ## Tests
+e
 
-I have use [`gtest`](https://github.com/google/googletest) as the testing framework with tests under the directory `tests/`. You can use Qt Creator IDE to easily run the tests and you should see these pleasing greed circles ✅:
+I have used [`gtest`](https://github.com/google/googletest) as the testing framework with tests under the directory `tests/`. You can use Qt Creator IDE to easily run the tests and you should see these pleasing greed circles ✅:
 
 ![qt creator tests status](screenshots/tests.png)
 
-An alternative way to run tests is to use the terminal and `cmake` and `ctest` command like this:
+> *Note:* you have to install the needed libraries ([gtest](https://github.com/google/googletest), [muParser](https://beltoforion.de/en/muparser/), and [Qt v6](https://www.qt.io/download-qt-installer)). It will differ from OS to another.
+
+An alternative way to run tests is to use the terminal with `cmake` and `ctest` command like this:
 
 ```bash
 cmake -S tests/ -B build-tests/
